@@ -1,0 +1,12 @@
+*.pyc
+__pycache__
+.pytest_cache
+venv/
+node_modules/
+package-lock.json
+.vscode
+.idea
+backend/prj/db.sqlite3
+backend/prj/media
+backend/prj/static
+backend/prj/prj/local.py

@@ -1,0 +1,24 @@
+#app-center {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.example-card {
+    margin-top: 10px;
+    height: 145px;
+}
+
+mat-card-title {
+    width: 100px; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+    font-size: 14px !important;
+}
+
+mat-card-subtitle {
+    width: 100px; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+}

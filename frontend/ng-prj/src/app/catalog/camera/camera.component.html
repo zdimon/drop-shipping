@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Камера</h2>
+
+<video  width="400" height="300" #hardwareVideo autoplay></video>
+<canvas [hidden]="true" #canvas width="400" height="300"> </canvas>
+
+<button mat-raised-button
+(click)="takePic()"
+ >
+Сфоткать
+</button>

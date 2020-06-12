@@ -1,0 +1,30 @@
+<h2>Уведомления</h2>
+
+
+<div fxLayout="column" fxLayoutGap="10px">
+    <div
+        *ngFor="let item of notifications"
+        fxLayout="row"
+        fxLayoutGap="10px"
+        class="item"
+        >
+
+        <p>
+            <img style="border-radius: 50%;" [src]="item.consumer.get_small_image_url" />
+        </p>
+
+        <div> 
+            <p> Имя: {{ item.consumer.name }} </p>
+            <p>Телефон: {{ item.consumer.phone }} </p>
+        </div>
+
+
+        <img  [src]="item.product.get_small_image_url" />
+
+        <p> {{ item.product.name }} </p>
+
+        <p> {{ item.created_at }} </p>
+
+    </div>
+
+</div>

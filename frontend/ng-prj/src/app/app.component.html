@@ -1,0 +1,87 @@
+<div fxLayout="column" id="app-content">
+  <div id="app-header" 
+    fxFlex="60px" 
+    fxLayout="row" 
+    fxLayoutAlign="start center" 
+    fxLayoutGap="10px"
+  >
+    
+    <span ><a id="title-text" [routerLink]="'/'"> 
+      <img src="static/angular/assets/images/bazuka.png" height="60px" />
+     </a> </span>
+
+    <div    
+      fxLayout="row"
+      fxLayoutAlign="end center" 
+      fxFlex="100"
+      fxLayoutGap="10px"
+    >
+      <button mat-raised-button [routerLink]="'catalog/add'"  color="accent">
+        <mat-icon>control_point</mat-icon>
+      </button>
+      <button 
+        mat-raised-button  
+        [routerLink]="'basket'" 
+        color="primary"
+        *ngIf="basket.length > 0"
+        matBadge="{{ basket.length }}" 
+        matBadgePosition="before" 
+        matBadgeColor="accent"
+        >
+        <mat-icon>add_shopping_cart</mat-icon>
+      </button>
+
+     <!-- 
+      <button mat-raised-button [matMenuTriggerFor]="category">Категории</button>
+      -->
+
+      <button mat-raised-button [routerLink]="['profile/notify']">
+        <mat-icon>message</mat-icon>
+      </button>
+
+
+      <button *ngIf="!isAuth" mat-raised-button (click)="signInWithGoogle()"  color="primary">Google</button>
+
+      <ng-container *ngIf="user">
+          <img style="border-radius: 50%;" src="{{ user.get_small_image_url }}" />
+      </ng-container>
+      
+      <button *ngIf="isAuth" mat-raised-button (click)="logout()"  color="primary">
+        <mat-icon>logout</mat-icon>
+      </button>
+ 
+
+        <mat-menu #category="matMenu">
+          <ng-container *ngFor="let item of categories" >
+            <button 
+            mat-menu-item 
+            [routerLink]="['catalog/cat',item.id]"
+            [matMenuTriggerFor]="subitem">
+              {{ item.name }}
+            </button>
+            <mat-menu #subitem="matMenu">
+              <button 
+              *ngFor="let subitem of item.subcategory" 
+              [routerLink]="['catalog/subcat',subitem.id]"
+              mat-menu-item>
+                 {{ subitem.name }}
+              </button>
+            </mat-menu>
+          </ng-container>
+        </mat-menu>
+
+      
+    </div>
+
+
+  </div>
+  
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+  
+    
+
+  
+</div>
+

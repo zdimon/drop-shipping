@@ -1,0 +1,57 @@
+<h2> Добавление нового товара </h2>
+
+
+<form fxLayout="column">
+
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Название</mat-label>
+            <input matInput [(ngModel)]="name" name="name">
+        </mat-form-field>
+    </p>
+
+
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Стоимость</mat-label>
+            <input matInput [(ngModel)]="price" name="name">
+        </mat-form-field>
+    </p>
+
+    <!-- 
+    <p>
+        <mat-form-field>
+            <mat-label>Категория</mat-label>
+            <mat-select [(ngModel)]="category" name="category"  (selectionChange)="doCatChange($event)" >
+            <mat-option *ngFor="let cat of cats" [value]="cat.id">
+                {{cat.name}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+
+
+    <p>
+        <mat-form-field>
+            <mat-label>Подкатегория</mat-label>
+            <mat-select  [(ngModel)]="subcategory" name="subcategory" >
+            <mat-option *ngFor="let subcat of subcats" [value]="subcat.id">
+                {{subcat.name}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+
+    -->
+
+    <p>
+        <button type="button" mat-raised-button (click)="fileInput.click()">Выбрать файл</button>
+        <input  [(ngModel)]="filecomp" name="filecomp"  hidden (change)="onImageChanged($event)" #fileInput type="file" id="file">
+    
+        <button type="button" mat-raised-button (click)="addImgFromCam()">
+            Сделать фото с камеры.
+        </button>
+    </p>
+
+      <button type="submit" (click)="submitForm()" mat-raised-button color="accent">Добавить</button>
+</form>

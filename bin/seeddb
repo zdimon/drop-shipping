@@ -1,0 +1,5 @@
+#!/bin/bash
+cd backend
+. ./venv/bin/activate
+cd prj
+./manage.py load_from_inet
