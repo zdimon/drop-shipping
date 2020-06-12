@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'https://delivery.webmonstr.com/',
-  socketUrl: 'wss://delivery.webmonstr.com',
+  backendUrl: 'https://siska.ks.ua/',
+  socketUrl: 'wss://siska.ks.ua',
 };
 
 /*
