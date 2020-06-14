@@ -8,7 +8,7 @@ import { LoginService } from '../../login.service';
 
 import { AuthService } from "angularx-social-login";
 import { GoogleLoginProvider } from "angularx-social-login";
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -25,7 +25,8 @@ export class ListComponent implements OnInit {
     private apiService: ApiService,
     private basketService: BasketService,
     private loginService: LoginService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
     ) {
 
     this.apiService.getBasketInfo(this.basketService.getBasket()).subscribe((rez: any) => {
@@ -65,6 +66,7 @@ export class ListComponent implements OnInit {
       this.basket = [];
       this.basketService.submitBasket();
       alert('Ваш заказ отправлен, ждите когда с вами свяжется продавец.');
+      this.router.navigate(['/']);
     });
   }
 
