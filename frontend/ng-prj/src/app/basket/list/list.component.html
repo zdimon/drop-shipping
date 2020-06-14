@@ -1,44 +1,62 @@
 <h1>Моя корзина</h1>
 
+<div class="phone-form">
 
-<ng-container *ngIf="!isAuth">
-  <div style="text-align: center;">
-    <h2>Вам необходимо авторизоваться</h2>
-    <button  mat-raised-button (click)="signInWithGoogle()"  color="primary">Google</button>
-  </div>
-</ng-container>
+  <ng-container *ngIf="basket.length > 0">
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+      
+    
 
-<ng-container *ngIf="isAuth && basket.length > 0">
-  <div style="text-align: center;">
-    <button  mat-raised-button (click)="submitBasket()"  color="accent">
-      Отправить заказ
-    </button>
-  </div>
-</ng-container>
 
-<div id="app-center"  
-fxLayout="row wrap" 
-fxLayoutGap="10px" 
-fxLayoutAlign="center start">
+        <mat-form-field appearance="outline">
+            <mat-label>Телефон для связи</mat-label>
+            <input matInput [(ngModel)]="phone" name="phone" required />
+        </mat-form-field>
+        
 
-<mat-card class="example-card" *ngFor="let product of basket" >
-  <mat-card-header style="height: 100px;">
-    <div mat-card-avatar class="example-header-image" style="width: 90px;">
+      <button  mat-raised-button (click)="submitBasket()"  color="accent">
+        Отправить заказ
+      </button>
+    </div>
+  </ng-container>
+</div>
+
+
+<div fxLayout="column" fxLayoutGap="10px">
+
+    <div
+      *ngFor="let product of basket"
+      fxLayout="row"
+      fxLayoutGap="10px"
+      class="item" 
+    >
+     <div> 
       <img src="{{ product.get_small_image_url }}" />
     </div>
-    <mat-card-title>{{ product.name  }}</mat-card-title>
-    <mat-card-subtitle>{{ product.category.name  }}</mat-card-subtitle>
-    <mat-card-subtitle>{{ product.subcategory.name  }}</mat-card-subtitle>
-  </mat-card-header>
-  
-  <mat-card-content>
-    
-  </mat-card-content>
-  <mat-card-actions>
-    <button (click)="delFromBasket(product.id)" mat-button>Удалить из корзины</button>
-    
-  </mat-card-actions>
-</mat-card>
 
+    <div  fxFlex="50%" fxFlexFill>
+      <p>{{ product.name }}</p>
+      <p>{{ product.price }} грн.</p>
+    </div>
+
+    <div>
+
+      <p>{{ product.ammount }} (шт\кг)</p>
+      <p>
+        <button (click)="ammountUp(product.id)" mat-button>
+          <mat-icon >arrow_upward</mat-icon>
+        </button>
+    
+        <button (click)="ammountDown(product.id)" mat-button>
+          <mat-icon >arrow_downward</mat-icon>
+        </button>        
+      </p>
+    </div>
+    <div>
+      <button (click)="delete(product.id)" mat-button>
+        <mat-icon >delete</mat-icon>
+      </button>  
+    </div>
+  </div>
 </div>
 

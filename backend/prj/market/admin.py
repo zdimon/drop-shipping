@@ -34,7 +34,7 @@ class OrderProductAdmin(admin.TabularInline):
     
 class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderProductAdmin,]
-    list_display = ['consumer', 'created_at']
+    list_display = ['created_at']
 
 
 admin.site.register(Order, OrderAdmin)
@@ -47,7 +47,7 @@ class StoreAdmin(admin.ModelAdmin):
 admin.site.register(Store, StoreAdmin)
 
 class NotificationAdmin(admin.ModelAdmin):
-    list_display = ['product', 'provider', 'consumer']
+    list_display = ['product', 'provider', 'phone', 'ammount']
 
 admin.site.register(Notification, NotificationAdmin)
 

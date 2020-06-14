@@ -31,7 +31,9 @@ class BasketInfoView(APIView):
         out = []
         print(request.data['ids'])
         for it in request.data['ids']:
-            out.append(ProductSerializer(Product.objects.get(pk=it)).data)
+            tmp = ProductSerializer(Product.objects.get(pk=it)).data
+            tmp['ammount'] = 1
+            out.append(tmp)
         return Response(out)
 
 class BasketSubmitView(APIView):
@@ -43,27 +45,31 @@ class BasketSubmitView(APIView):
 
     '''
 
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
     @swagger_auto_schema( 
         request_body = BasketSubmitRequestSerializer, \
         responses={200: OrderSerializer} \
         )
     def post(self, request, format=None):
         o = Order()
-        o.consumer = request.user.userprofile
+        #o.consumer = request.user.userprofile
         o.save()
         for item in request.data.get('products'):
             product = Product.objects.get(pk = item['product'])
             op = OrderProduct()
             op.product = product
             op.order = o
+            op.phone = request.data.get('phone')
             op.ammount = item['ammount']
             op.save()
 
             noty = Notification()
             noty.product = product
-            noty.consumer = request.user.userprofile
+
+            #noty.consumer = request.user.userprofile
+            noty.phone = request.data.get('phone')
             noty.provider = product.user
+            noty.ammount = item['ammount']
             noty.save()
         
         async_to_sync(channel_layer.group_send)("notifications", {"type": "send_notify"})

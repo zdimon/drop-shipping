@@ -9,7 +9,7 @@ fxLayoutAlign="center start">
       <img src="{{ product.get_small_image_url }}" />
     </div>
     <mat-card-title>{{ product.name  }}</mat-card-title>
-    <mat-card-subtitle>{{ product.price  }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ product.price  }} грн. кг/шт</mat-card-subtitle>
     
   </mat-card-header>
   
@@ -17,7 +17,9 @@ fxLayoutAlign="center start">
     
   </mat-card-content>
   <mat-card-actions>
-    <button (click)="doAddToBasket(product.id)" mat-button>Добавить в корзину</button>
+    <button (click)="doAddToBasket(product.id)" mat-raised-button color="accent">
+      <mat-icon>add_shopping_cart</mat-icon>
+      Добавить в корзину</button>
     
   </mat-card-actions>
 </mat-card>

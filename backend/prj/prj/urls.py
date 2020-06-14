@@ -41,6 +41,7 @@ urlpatterns = [
     path('catalog', index),
     path('catalog/add', index),
     path('profile/notify', index),
+    path('basket', index),
 
 
 ]

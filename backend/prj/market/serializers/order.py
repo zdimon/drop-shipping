@@ -8,7 +8,7 @@ class OrderProductSerializer(serializers.ModelSerializer):
     product = ProductSerializer()
     class Meta:
         model = OrderProduct
-        fields = ['id', 'product', 'ammount']
+        fields = ['id', 'product', 'ammount', 'phone']
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -22,4 +22,4 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['id', 'consumer', 'created_at', 'status', 'products']
+        fields = ['id', 'created_at', 'status', 'products']

@@ -19,6 +19,7 @@ export class ListComponent implements OnInit {
 
   basket = [];
   isAuth = false;
+  phone = '';
 
   constructor(
     private apiService: ApiService,
@@ -54,15 +55,44 @@ export class ListComponent implements OnInit {
 
   submitBasket() {
     let req_data = {
-      products: []
-    };
+      products: [],
+      phone: this.phone
+    }; 
     for(let p of this.basket) {
-      req_data.products.push({product: p.id, ammount: 1});
+      req_data.products.push({product: p.id, ammount: p.ammount});
     }
     this.apiService.submitBasket(req_data).subscribe((data: any) => {
       this.basket = [];
+      this.basketService.submitBasket();
       alert('Ваш заказ отправлен, ждите когда с вами свяжется продавец.');
     });
+  }
+
+  ammountUp(id: number){
+    for(let i of this.basket) {
+      if(i.id === id) {
+        i.ammount += 1;
+      }
+      console.log(i);
+    }
+  }
+
+  ammountDown(id: number){
+    for(let i of this.basket) {
+      if(i.id === id) {
+        i.ammount -= 1;
+      }
+      console.log(i);
+    }
+  }
+
+  delete(id: number){
+    for(let i of this.basket) {
+      if(i.id === id) {
+        this.basket.splice( this.basket.indexOf(i),1);
+      }
+      console.log(i);
+    }
   }
 
 }

@@ -34,7 +34,8 @@ export class BasketService {
   }
 
   submitBasket() {
-
+    this._basket = [];
+    this.basket$.next(this._basket);
   }
 
 }

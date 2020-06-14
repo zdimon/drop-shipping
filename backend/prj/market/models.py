@@ -124,7 +124,7 @@ class Order(models.Model):
         ('finished', 'finished order')
     )
 
-    consumer = models.ForeignKey(UserProfile,on_delete=models.CASCADE, null=True, blank=True)
+    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, default='new', choices=STATUS)
@@ -137,7 +137,8 @@ class Order(models.Model):
 class OrderProduct(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE, null=True, blank=True)
     order = models.ForeignKey(Order,on_delete=models.CASCADE, null=True, blank=True)
-    ammount = models.IntegerField(default=0)
+    ammount = models.IntegerField(default=1)
+    phone = models.CharField(max_length=250, default='')
 
     class Meta:
         verbose_name = 'OrderProduct'
@@ -146,8 +147,10 @@ class OrderProduct(models.Model):
 class Notification(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE, null=True, blank=True)
     provider = models.ForeignKey(UserProfile,on_delete=models.CASCADE, null=True, blank=True, related_name='provider')
-    consumer = models.ForeignKey(UserProfile,on_delete=models.CASCADE, null=True, blank=True, related_name='consumer')
+    # consumer = models.ForeignKey(UserProfile,on_delete=models.CASCADE, null=True, blank=True, related_name='consumer')
     created_at = models.DateTimeField(auto_now_add=True)
+    phone = models.CharField(max_length=250, default='')
+    ammount = models.IntegerField(default=1)
 
     class Meta:
         verbose_name = 'Notification'
